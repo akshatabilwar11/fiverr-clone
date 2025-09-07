@@ -1,0 +1,19 @@
+// server/routes/gig.routes.js
+import express from "express";
+import {
+  createGig,
+  deleteGig,
+  getGig,
+  getGigs,
+} from "../controllers/gigController.js";
+import { verifyToken } from "../middleware/jwt.js";
+
+const router = express.Router();
+
+// Routes
+router.post("/", verifyToken, createGig);
+router.delete("/:id", verifyToken, deleteGig);
+router.get("/:id", getGig);
+router.get("/", getGigs);
+
+export default router; // ✅ Make sure this exists
